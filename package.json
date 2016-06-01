@@ -4,15 +4,21 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-        "start": "cd app && ../node_modules/http-server/bin/http-server",
-
-"webdriver-manager": "./node_modules/protractor/bin/webdriver-manager",
-"protractor": "./node_modules/protractor/bin/protractor"
+    "start": "cd app && ../node_modules/http-server/bin/http-server",
+    "webdriver-manager": "./node_modules/protractor/bin/webdriver-manager",
+    "protractor": "./node_modules/protractor/bin/protractor"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "http-server": "^0.9.0",
     "protractor": "^3.3.0"
+  },
+  "devDependencies": {
+    "jasmine-core": "^2.4.1",
+    "jasmine-spec-reporter": "^2.4.0",
+    "karma": "^0.13.22",
+    "karma-chrome-launcher": "^1.0.1",
+    "karma-jasmine": "^1.0.2"
   }
 }
