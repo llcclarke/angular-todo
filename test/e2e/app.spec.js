@@ -2,8 +2,8 @@ describe('Todos tracker', function() {
   it('has several ToDos', function() {
     browser.get('/');
     var todos = $$('#todos p');
-    expect(todos.first().getText()).toEqual('ToDo1: completed');
-    expect(todos.last().getText()).toEqual('ToDo2: not completed');
+    expect(todos.first().getText()).toMatch('ToDo1: completed');
+    expect(todos.last().getText()).toMatch('ToDo2: not completed');
   });
   it('can add a ToDo', function() {
     browser.get('/');
@@ -11,16 +11,25 @@ describe('Todos tracker', function() {
     $('#add-todo').click();
 
     var todo = $$('#todos p').last().getText();
-    expect(todo).toEqual('NewToDo: not completed');
+    expect(todo).toMatch('NewToDo: not completed');
   });
   it('can remove a ToDo', function() {
     browser.get('/');
     var todos = $$('#todos p');
+    var intialCount = todos.count();
 
     $('#remove-todo').click();
 
     expect(todos.count()).toEqual(1);
   });
 
-  // it('can mark a ToDo as completed', function(){})
+
+   it('can mark a ToDo as complete', function(){
+    browser.get('/');
+    var todo = $$('#todos p').last();
+    todo.element(by.css('.complete')).click();
+
+    expect(todo.getText()).toMatch("ToDo2: completed");
+  });
+
 });
