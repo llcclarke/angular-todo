@@ -1,9 +1,15 @@
-toDoApp.controller('ToDoController', ['ToDoService', 'ToDoFactory', function(ToDoService, ToDoFactory) {
+toDoApp.controller('ToDoController', [
+  // 'ToDoService',
+  'ToDoFactory', function(
+    // ToDoService,
+    ToDoFactory) {
   var self = this;
 
-  ToDoService.getAll().then(function(todos){
-    self.todos = todos;
-  })
+  // ToDoService.getAll().then(function(todos){
+  //   self.todos = todos;
+  // })
+
+  self.todos = [];
 
 
   self.addToDo = function(todoText) {
