@@ -1,11 +1,17 @@
 describe('ToDoController', function() {
   beforeEach(module('toDoApp'));
 
-  var ctrl, ToDoFactory;
+  var ctrl, httpBackend, ToDoFactory;
+  var toDoData = [{text: "ToDo1", completed: true}, {text: "ToDo2", completed: false}];
 
-  beforeEach(inject(function($controller, _ToDoFactory_) {
+  beforeEach(inject(function($httpBackend, $controller, _ToDoFactory_) {
     ctrl = $controller('ToDoController');
     ToDoFactory = _ToDoFactory_
+    httpBackend = $httpBackend;
+
+    httpBackend.expectGET("http://quiet-beach-24792.herokuapp.com/todos.json").respond(toDoData);
+
+    httpBackend.flush();
   }));
 
   it('initialises with several todos', function() {
@@ -28,5 +34,10 @@ describe('ToDoController', function() {
     ctrl.removeToDo();
 
     expect(ctrl.todos.length).toEqual(initialCount - 1);
+  });
+
+  it('shows remaining todos', function(){
+    var amount = ctrl.remaining();
+    expect(amount).toEqual(1);
   });
 });
