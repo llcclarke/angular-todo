@@ -8,6 +8,7 @@ toDoApp.controller('ToDoController', ['ToDoService', 'ToDoFactory', function(ToD
 
   self.addToDo = function(todoText) {
     self.todos.push(new ToDoFactory(todoText));
+
   };
 
   self.removeToDo = function() {
